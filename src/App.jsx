@@ -1,8 +1,12 @@
 
 import React, { useState } from "react";
 import api from "./services/api";
+import Presentation from './components/Presentations/Presentations';
+import PokemonCards from './components/PokemonCards/PokemonCards';
+import UIInfiniteScroll from "./components/infiniteScroll/infiniteScroll";
  
 const App = () => {
+
   const [pokemon, setPokemon] = useState(null);
   const [erro, setErro] = useState(null);
   const [typePokemon, setTypePokemon] = useState('');
@@ -13,28 +17,29 @@ const App = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefualt();
+    event.preventDefault();
     if(!typePokemon){
       return;
     }
     setIsLoading(true);
     try{
       const response = await api.get(`/pokemon/${typePokemon}`);
-      setTypePokemon(response.data);
+      setPokemon(response.data);
       setErro(null);
-      setIsLoading(false);
     }
     catch(error){
       setErro('Pokemon não encontrado!');
-      setIsLoading(false);
       setPokemon(null);
-    }    
+    } 
+    finally{
+      setIsLoading(false);
+    }   
   };
-
 
   return (
     <div>
-      <h1> Seja bem-vindo à Pokedex!</h1>
+        <Presentation />
+        
         <p>
           Digite o nome ou o id de um Pokemon para começar!
         </p>
@@ -48,7 +53,12 @@ const App = () => {
             {isLoading ? (<span>carregando...</span>) : (<>Buscar</>)}
           </button>
         </form>
-    </div>
-  );
-};
+  
+        <PokemonCards />
+        {<PokemonCards/> && (
+        <UIInfiniteScroll fetchMore={() => console.log("Apareceu na tela")}/>
+        )}
+      </div> 
+)}
 export default App;
+
