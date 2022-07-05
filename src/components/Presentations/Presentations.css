@@ -1,0 +1,31 @@
+
+.Presentation{
+    background-color: #0075BE;
+    text-align: center;
+    color:#FFCC00;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+
+}
+
+.logo{
+    margin-top: 50px;
+    width: 300px;  
+}
+
+.pokedex{
+    background-color: #0075BE;
+}
+
+.pokedex p{
+    margin-left: 30px;
+    color: white;
+}
+
+.forms input{
+    background-color: white;
+    margin-left: 30px;
+   
+}
+    
+    
+

@@ -1,5 +1,5 @@
 .pokemonCards{
-    background-color: burlywood;
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
